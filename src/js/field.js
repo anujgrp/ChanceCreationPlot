@@ -1,9 +1,9 @@
-var FIELD_MULT = 3,
+var FIELD_MULT = 2,
     FIELD_WIDTH = 273 * FIELD_MULT,
     FIELD_LENGTH = 210 * FIELD_MULT,
     FIELD_MARGIN = 15,
-    FIELD_COLOR = "olivedrab",
-    LINE_COLOR = "white";
+    FIELD_COLOR = "white",
+    LINE_COLOR = "black";
 var X_FIELD_SCALE = d3.scaleLinear()
     .domain([136, -136])
     .range([FIELD_MARGIN, FIELD_WIDTH+FIELD_MARGIN]);
@@ -85,7 +85,7 @@ function drawLines() {
         .attr("r", 40 * FIELD_MULT);
     //draw goal 
     svg.append("rect")
-        .attr("id", "GOAL")
+        .attr("id", "goal")
         .attr("width", 30*FIELD_MULT)
         .attr("height", FIELD_MARGIN/2)
         .attr("x", X_FIELD_SCALE(15))
