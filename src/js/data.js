@@ -1,6 +1,6 @@
 var CHANCES;
 
-function readData(cb) {
+function readData(cb, arg) {
     //read the data from the file and format it
     d3.csv("/data/cslchances17.csv", function(d) {
         return {
@@ -27,9 +27,25 @@ function readData(cb) {
         //set global variable to newly formatted data
         CHANCES = data;
         //callback if there is one
-        if (cb) {
-            cb();
-        }
+        if (cb) cb(arg);            
+        // cb("Beijing Guoan");
+        // cb("Changchun Yatai");
+        // cb("Chongqing Dangdai Lifan");
+        // cb("Guangzhou Evergrande");
+        // cb("Guangzhou R&F");
+        // cb("Guizhou Zhicheng");
+        // cb("Hebei CFFC");
+        // cb("Henan Jianye");
+        // cb("Jiangsu Suning");
+        // cb("Liaoning Kaixin");
+        // cb("Liaoning Whowin");
+        // cb("Shandong Luneng");
+        // cb("Shanghai Shenhua");
+        // cb("Shanghai SIPG");
+        // cb("Tianjin Quanjian");
+        // cb("Tianjin Teda");
+        // cb("Yanbian Funde");
+        
     });
 }
 

@@ -24,9 +24,9 @@ function drawLines() {
     //draw sidelines
     svg.append("rect")
         .attr("id", "sidelines")
-        .attr("width", FIELD_WIDTH)
+        .attr("width", FIELD_WIDTH+1)
         .attr("height", FIELD_LENGTH + FIELD_MARGIN+1)
-        .attr("x", FIELD_MARGIN)
+        .attr("x", FIELD_MARGIN-1)
         .attr("y", FIELD_MARGIN)
         .style("fill", "none")
         .style("stroke", LINE_COLOR)
