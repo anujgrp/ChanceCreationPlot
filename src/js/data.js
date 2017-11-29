@@ -1,6 +1,6 @@
 var CHANCES;
 
-function readData(cb, arg) {
+function readData(cb, arg1, arg2) {
     //read the data from the file and format it
     d3.csv("/data/cslchances17.csv", function(d) {
         return {
@@ -27,13 +27,7 @@ function readData(cb, arg) {
         //set global variable to newly formatted data
         CHANCES = data;
         //callback if there is one
-        if (cb) {
-            if (arg) {
-                cb(arg);
-            } else {
-                cb();
-            }
-        }        
+        if (cb) cb(arg1, arg2);       
     });
 }
 

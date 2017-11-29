@@ -6,30 +6,56 @@ $(document).ready(function() {
                 "Shanghai SIPG", "Tianjin Quanjian", "Tianjin Teda", "Yanbian Funde"
             ]; 
     //initialize everything
-    function init(f, team) {
+    function init(f, team, att) {
         FIELD = f;
         //draw field
         drawField();
-        //bring in the data and give callback function to do something with the data        
-        readData(drawAssist, team);
+        //add teams to option select
+        addOptions();
+        //bring in the data      
+        readData();
     }
-    // init(FIELD, teams[1]); /*average team*/
-    // init(FIELD, teams[13]); /*good team*/
-    // init(FIELD, teams[9]); /*bad team*/
-    cycleTeams(0);
+    init();
+    // init(FIELD, teams[1], true); /*average team*/
+    // init(FIELD, teams[13], true); /*good team*/
+    // init(FIELD, teams[9], true); /*bad team*/
+    // init(FIELD, teams[13], false);
+    // setTimeout(function () {drawAssist(teams[13], true);}, 500);
+    // cycleTeams(0);
     function cycleTeams(t) {
         if (t < teams.length) {
-            init(FIELD, teams[t]);
-            setTimeout(function () {clearField(); drawField()}, 2000);
-            setTimeout(function () {cycleTeams(t+1)}, 2500);
+            init(FIELD, teams[t], false);
+            setTimeout(function () {drawAssist(teams[t], true);}, 500);
+            setTimeout(function () {clearField();}, 2500);
+            setTimeout(function () {cycleTeams(t+1)}, 3000);
         }
     }
-
-    function clearField() {
-        d3.selectAll(".assist-bin").remove();
-        d3.selectAll(".lines").remove();
+    
+    function addOptions() {
+        var ts = document.getElementById("team-select");
+        for (t in teams) {
+            var team = teams[t];
+            var option = document.createElement("option");
+            option.text = team;
+            ts.add(option);
+        }
+        
+        ts.onchange = function() {optionsChanged(ts.value)};
+        document.getElementById("created").onchange = function() {optionsChanged(ts.value)};
+        document.getElementById("conceded").onchange = function() {optionsChanged(ts.value)};
     }
 
+    function optionsChanged(team) {
+        var created = document.getElementById("created");
+        var conceded = document.getElementById("conceded");
+        d3.selectAll(".assist-bin").remove();
+        if (created.checked) {
+            drawAssist(team, true);
+        }
+        if (conceded.checked) {
+            drawAssist(team, false);
+        }
+    }
     
     
 });

@@ -1,7 +1,7 @@
 var FIELD_MULT = 2,
     FIELD_WIDTH = 273 * FIELD_MULT,
     FIELD_LENGTH = 421 * FIELD_MULT,
-    MARGIN = {top: 15, left: 15, bottom: 15, right:15},
+    MARGIN = {top: 15, left: 25, bottom: 15, right:15},
     FIELD_COLOR = "white",
     LINE_COLOR = "black";
 
@@ -10,6 +10,12 @@ var x = d3.scaleLinear()
     .range([0, FIELD_LENGTH]);
 var y = d3.scaleLinear()
     .domain([136, -136])
+    .range([0, FIELD_WIDTH]);
+var def_x = d3.scaleLinear()
+    .domain([0, 420])
+    .range([0, FIELD_LENGTH]);
+var def_y = d3.scaleLinear()
+    .domain([-136, 136])
     .range([0, FIELD_WIDTH]);
 
 function drawField() {
@@ -117,7 +123,10 @@ function drawField() {
         .attr("cx", x(210))
         .attr("cy", y(0)) 
         .attr("r", 40 * FIELD_MULT);
-        
-    
+}
+
+function clearField() {
+    d3.selectAll(".assist-bin").remove();
+    d3.selectAll(".lines").remove();
 }
 
