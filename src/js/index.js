@@ -11,9 +11,9 @@ $(document).ready(function() {
         //draw field
         drawField();
         //bring in the data and give callback function to do something with the data        
-        // readData(drawAssist);
+        readData(drawAssist, team);
     }
-    init(FIELD, teams[0]);
+    init(FIELD, teams[2]);
     // cycleTeams(0);
     function cycleTeams(t) {
         if (t < teams.length) {

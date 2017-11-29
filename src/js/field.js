@@ -121,27 +121,50 @@ function drawField() {
     
 }
 
-function drawAssist() {
+function drawAssist(team) {
     var field = d3.select("#field");
 
     var randomX = d3.randomNormal(FIELD_LENGTH / 2, 80),
         randomY = d3.randomNormal(FIELD_WIDTH / 2, 80),
         points = d3.range(2000).map(function() { return [randomX(), randomY()]; });
 
-    var color = d3.scaleSequential(d3.interpolateLab("white", "steelblue"))
-        .domain([0, 20]);
+    var color = d3.scaleSequential(d3.interpolateLab("white", "#005824"))
+        .domain([0, 10]);
 
     var hexbin = d3.hexbin()
-        .radius(20)
+        .radius(39)
         .extent([[0, 0], [FIELD_LENGTH, FIELD_WIDTH]]);
+    // console.log(points);
+    // console.log(hexbin.centers())
+
+    var assists = formatChances(team);
+    console.log(assists);
 
     field.append("g")
             .attr("class", "hexagon")
             .attr("clip-path", "url(#clip)")
         .selectAll("path")
-        .data(hexbin(points))
+        .data(hexbin(assists))
+        // .data(hexbin(points))
         .enter().append("path")
             .attr("d", hexbin.hexagon())
+            // .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; })
             .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-            .attr("fill", function(d) { return color(d.length); });
+            .style("fill", function(d) { return color(d.length); })
+            .style("opacity", .5)
+}
+
+function formatChances(team) {
+    var info = [];
+    for (var c=0; c < CHANCES.length; c++) {
+        var chance = CHANCES[c];
+        if (chance.team == team && chance.icon != "penawarded" && chance.icon != "penmissed") {
+            if ((!isNaN(chance.assist_x)) && (!isNaN(chance.assist_y))) {
+                var assist_loc = [x(chance.assist_y), y(chance.assist_x)]; 
+                // assist_loc[quality] = chance.chance_value;
+                info.push(assist_loc);
+            }
+        }
+    }
+    return info;
 }
