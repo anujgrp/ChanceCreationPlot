@@ -27,8 +27,13 @@ function readData(cb, arg) {
         //set global variable to newly formatted data
         CHANCES = data;
         //callback if there is one
-        if (cb) cb(arg);
-        
+        if (cb) {
+            if (arg) {
+                cb(arg);
+            } else {
+                cb();
+            }
+        }        
     });
 }
 

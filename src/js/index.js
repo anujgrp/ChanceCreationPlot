@@ -11,10 +11,10 @@ $(document).ready(function() {
         //draw field
         drawField();
         //bring in the data and give callback function to do something with the data        
-        readData(chanceQualityByAssistLoc, team);
+        // readData(drawAssist);
     }
-    // init(FIELD, teams[0]);
-    cycleTeams(0);
+    init(FIELD, teams[0]);
+    // cycleTeams(0);
     function cycleTeams(t) {
         if (t < teams.length) {
             init(FIELD, teams[t]);
