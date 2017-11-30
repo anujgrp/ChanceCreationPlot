@@ -36,7 +36,7 @@ $(document).ready(function() {
         }
         var bgs = document.getElementById("bg-select");
         var txs = document.getElementById("text-select");
-        var colors = ["black", "blue", "gold", "green", "red", "white"];
+        var colors = ["black", "blue", "gold", "green", "orange", "red", "white"];
         for (c in colors) {
             var color = colors[c];
             var option = document.createElement("option");
@@ -45,7 +45,7 @@ $(document).ready(function() {
         }
         $("#text-select").html($("#bg-select").html());
         bgs.onchange = function() {d3.select("#head-bg").style("fill", bgs.value).style("stroke", bgs.value)};
-        txs.onchange = function() {d3.select("#head-text").style("fill", txs.value)};
+        txs.onchange = function() {d3.select("#team-text").style("fill", txs.value)};
         
         ts.onchange = function() {optionsChanged(ts.value)};
         document.getElementById("created").onchange = function() {optionsChanged(ts.value)};

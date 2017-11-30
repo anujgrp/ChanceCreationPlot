@@ -6,7 +6,7 @@ var attscale = ["#99d8c9", "#66c2a4", "#41ae76", "#238b45", "#005824"],
     defscale = ["#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000"];
 function drawAssist(team, attacking) {
     var field = d3.select("#field");
-    d3.select("#head-text").text(team);
+    d3.select("#team-text").text(team);
     var radius = d3.scaleSqrt()
         .domain([0, 20])
         .range([0, 45]);
