@@ -58,9 +58,15 @@ $(document).ready(function() {
         d3.selectAll(".assist-bin").remove();
         if (created.checked) {
             drawAssist(team, true);
+            d3.selectAll(".attscale").style("opacity", .75);
+        } else {
+            d3.selectAll(".attscale").style("opacity", 0);
         }
         if (conceded.checked) {
             drawAssist(team, false);
+            d3.selectAll(".defscale").style("opacity", .75);
+        } else {
+            d3.selectAll(".defscale").style("opacity", 0);
         }
     }
     

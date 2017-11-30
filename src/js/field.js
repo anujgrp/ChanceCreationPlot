@@ -1,7 +1,7 @@
 var FIELD_MULT = 2,
     FIELD_WIDTH = 273 * FIELD_MULT,
     FIELD_LENGTH = 421 * FIELD_MULT,
-    MARGIN = {top: 75, left: 25, bottom: 30, right:25},
+    MARGIN = {top: 75, left: 100, bottom: 30, right: 100},
     FIELD_COLOR = "white",
     LINE_COLOR = "black",
     HEADER_COLOR = "black",
@@ -25,6 +25,88 @@ d3.selection.prototype.moveToFront = function() {
         this.parentNode.appendChild(this);
     });
 };
+
+function drawScales() {
+    var field = d3.select("#field");
+    //draw defending scale
+    field.append("text")
+        .attr("class", "defscale")
+        .attr("x", -65)
+        .attr("y", (FIELD_WIDTH/2)-85)
+        .attr("dy", ".5em")
+        .style("font-size", ".75em")
+        .style("fill", "black")
+        .style("text-anchor", "right")
+        .text("Avg CR")
+        .style("opacity", 0);
+    field.append("text")
+        .attr("class", "defscale")
+        .attr("x", -(BINSIZE*3)-25)
+        .attr("y", (FIELD_WIDTH/2)-60)
+        .attr("dy", ".5em")
+        .style("font-size", ".75em")
+        .style("fill", "black")
+        .style("text-anchor", "right")
+        .text("High")
+        .style("opacity", 0);
+    field.append("text")
+        .attr("class", "defscale")
+        .attr("x", -(BINSIZE*3)-25)
+        .attr("y", 60+(FIELD_WIDTH/2))
+        .attr("dy", ".5em")
+        .style("font-size", ".75em")
+        .style("fill", "black")
+        .style("text-anchor", "right")
+        .text("Low")
+        .style("opacity", 0);
+    for (var i=0; i < defscale.length; i++) {
+        field.append("path")
+            .attr("class", "defscale")
+            .attr("d", hexbin.hexagon(15))
+            .attr("transform", "translate(" + (-BINSIZE-25) + "," + ((i*30)+((FIELD_WIDTH/2)-60)) + ")")
+            .style("fill", defscale[defscale.length-(i+1)])
+            .style("opacity", 0);
+    }
+    //draw attacking scale
+    field.append("text")
+        .attr("class", "attscale")
+        .attr("x", FIELD_LENGTH+25)
+        .attr("y", (FIELD_WIDTH/2)-85)
+        .attr("dy", ".5em")
+        .style("font-size", ".75em")
+        .style("fill", "black")
+        .style("text-anchor", "left")
+        .text("Avg CR")
+        .style("opacity", 0);
+    field.append("text")
+        .attr("class", "attscale")
+        .attr("x", FIELD_LENGTH+BINSIZE+40)
+        .attr("y", (FIELD_WIDTH/2)-60)
+        .attr("dy", ".5em")
+        .style("font-size", ".75em")
+        .style("fill", "black")
+        .style("text-anchor", "left")
+        .text("High")
+        .style("opacity", 0);
+    field.append("text")
+        .attr("class", "attscale")
+        .attr("x", FIELD_LENGTH+BINSIZE+40)
+        .attr("y", 60+(FIELD_WIDTH/2))
+        .attr("dy", ".5em")
+        .style("font-size", ".75em")
+        .style("fill", "black")
+        .style("text-anchor", "left")
+        .text("Low")
+        .style("opacity", 0);
+    for (var i=0; i < attscale.length; i++) {
+        field.append("path")
+            .attr("class", "attscale")
+            .attr("d", hexbin.hexagon(15))
+            .attr("transform", "translate(" + (FIELD_LENGTH+BINSIZE+25) + "," + ((i*30)+((FIELD_WIDTH/2)-60)) + ")")
+            .style("fill", attscale[attscale.length-(i+1)])
+            .style("opacity", 0);
+    }
+}
 
 function drawField() {
     var svg = d3.select("svg")
@@ -183,6 +265,7 @@ function drawField() {
         .style("stroke", "black")
         .style("stroke-width", 1)
         .attr("marker-end","url(#triangle)");
+    drawScales();
 }
 
 function clearField() {

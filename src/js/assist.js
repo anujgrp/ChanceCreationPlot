@@ -1,13 +1,15 @@
+var BINSIZE = 19.5;
+var hexbin = d3.hexbin()
+    .size([FIELD_LENGTH, FIELD_WIDTH])
+    .radius(BINSIZE);
+var attscale = ["#99d8c9", "#66c2a4", "#41ae76", "#238b45", "#005824"],
+    defscale = ["#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000"];
 function drawAssist(team, attacking) {
     var field = d3.select("#field");
     d3.select("#head-text").text(team);
     var radius = d3.scaleSqrt()
         .domain([0, 20])
         .range([0, 45]);
-
-    var hexbin = d3.hexbin()
-        .radius(19.5);
-        // .extent([[0, 0], [FIELD_LENGTH, FIELD_WIDTH]]);
 
     var assistLocations = formatChances(team, attacking);
 
@@ -50,8 +52,8 @@ function formatChances(team, attacking) {
 
 function color(avg, attacking) {
     var scale = [], c="white";
-    if (attacking) scale = ["#99d8c9", "#66c2a4", "#41ae76", "#238b45", "#005824"];
-    else scale = ["#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000"];
+    if (attacking) scale = attscale;
+    else scale = defscale;
     if (avg >= .21) c = scale[4];
     else if (avg >= .1195) c = scale[3];
     else if (avg >= .065) c = scale[2];
@@ -59,3 +61,4 @@ function color(avg, attacking) {
     else if (avg >= 0) c = scale[0];
     return c;
 }
+
