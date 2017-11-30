@@ -4,8 +4,6 @@
 
 Web app used to display where teams create and concede chances from. The plot shows the average Chance Rating of a team binned by location on the field.
 
-Data used is from StrataBet and comes from the 2017 Chinese Super League.
-
 ### Examples
 
 ![Example](/src/img/example-1.png)
@@ -15,6 +13,10 @@ Data used is from StrataBet and comes from the 2017 Chinese Super League.
 ### Technologies Used
 
 HTML/JS, D3.js, jQuery, Express
+
+#### Data
+
+This is for a competition hosted by [Chance Analytics](https://chanceanalytics.com/). The data provided is from StrataData and comes from the 2017 Chinese Super League.
 
 ## Install
 
