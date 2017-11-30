@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Assist Map</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
@@ -14,16 +16,38 @@
     <script type="text/javascript" src="js/radar.js"></script>
     <script type="text/javascript" src="js/data.js"></script>
 </head>
+<style>
+    html,body {
+        margin:0px;
+        padding:0px;
+        font-family: "Roboto";
+    }
+    #header {
+        width: 842px;
+        margin-left: 25px;
+        text-align: center;
+        background-color: #d3d3d3;
+    }
+
+    form {
+        margin-left:15px;
+    }
+
+</style>
 <body>
-    <div id="header"></div>
     <svg></svg>
     <form id="options-form">
         <h3>Choose Team</h3>
         Team: <select id="team-select"></select>
         <br>
+        Background: <select id="bg-select"></select>
+        <br>
+        Text: <select id="text-select"></select>
+        <br>
         <h3>Chances</h3>
         <input type="checkbox" name="chances" id="created"> Created<br>
         <input type="checkbox" name="chances" id="conceded"> Conceded<br>
     </form>
+    <br><br>
 </body>
 </html>

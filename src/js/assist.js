@@ -1,13 +1,13 @@
 function drawAssist(team, attacking) {
     var field = d3.select("#field");
-
+    d3.select("#head-text").text(team);
     var radius = d3.scaleSqrt()
         .domain([0, 20])
-        .range([0, 50]);
+        .range([0, 45]);
 
     var hexbin = d3.hexbin()
-        .radius(45)
-        .extent([[0, 0], [FIELD_LENGTH, FIELD_WIDTH]]);
+        .radius(19.5);
+        // .extent([[0, 0], [FIELD_LENGTH, FIELD_WIDTH]]);
 
     var assistLocations = formatChances(team, attacking);
 
@@ -22,6 +22,7 @@ function drawAssist(team, attacking) {
             .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
             .style("fill", function(d) { return color(d3.mean(d, function(d) { return d[2]; }), attacking); })
             .style("opacity", .75);
+    d3.select("#sidelines").moveToFront();
 }
 
 function formatChances(team, attacking) {

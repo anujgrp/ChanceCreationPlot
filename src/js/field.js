@@ -1,9 +1,11 @@
 var FIELD_MULT = 2,
     FIELD_WIDTH = 273 * FIELD_MULT,
     FIELD_LENGTH = 421 * FIELD_MULT,
-    MARGIN = {top: 15, left: 25, bottom: 15, right:15},
+    MARGIN = {top: 75, left: 25, bottom: 30, right:25},
     FIELD_COLOR = "white",
-    LINE_COLOR = "black";
+    LINE_COLOR = "black",
+    HEADER_COLOR = "black",
+    TEXT_COLOR = "white";
 
 var x = d3.scaleLinear()
     .domain([420, 0])
@@ -18,14 +20,42 @@ var def_y = d3.scaleLinear()
     .domain([-136, 136])
     .range([0, FIELD_WIDTH]);
 
+d3.selection.prototype.moveToFront = function() {  
+    return this.each(function(){
+        this.parentNode.appendChild(this);
+    });
+};
+
 function drawField() {
     var svg = d3.select("svg")
         .attr("height", FIELD_WIDTH + MARGIN.top + MARGIN.bottom)
-        .attr("width", FIELD_LENGTH + MARGIN.left + MARGIN.right);
+        .attr("width", FIELD_LENGTH + MARGIN.left + MARGIN.right)
+        .style("background", FIELD_COLOR);
+    var header = svg.append("g")
+        .attr("id", "header")
+        .attr("transform", "translate(" + MARGIN.left + ",0)");
+    header.append("rect")
+        .attr("id", "head-bg")
+        .attr("width", FIELD_LENGTH)
+        .attr("height", MARGIN.top)
+        .style("fill", HEADER_COLOR)
+        .style("stroke", HEADER_COLOR)
+        .style("stroke-width", 2)
+        .style("opacity", .75);
+    header.append("text")
+        .attr("id", "head-text")
+        .attr("x", FIELD_LENGTH/2)
+        .attr("y", MARGIN.top/2)
+        .attr("dy", ".5em")
+        .style("font-size", "2em")
+        .style("fill", TEXT_COLOR)
+        .style("text-anchor", "middle")
+        .style("opacity", .75);
+        
+        
     var g = svg.append("g")
         .attr("id", "field")
-        .attr("transform", "translate(" + MARGIN.left + "," + MARGIN.top + ")")
-        .style("background", FIELD_COLOR);
+        .attr("transform", "translate(" + MARGIN.left + "," + MARGIN.top + ")");
 
     g.append("clipPath")
         .attr("id", "clip")
@@ -123,6 +153,36 @@ function drawField() {
         .attr("cx", x(210))
         .attr("cy", y(0)) 
         .attr("r", 40 * FIELD_MULT);
+
+    g.append("text")
+        .attr("id", "arrow-text")
+        .attr("class", "lines")
+        .attr("x", FIELD_LENGTH/2)
+        .attr("y", FIELD_WIDTH + 15)
+        .style("font-size", ".75em")
+        .style("fill", "black")
+        .style("text-anchor", "middle")
+        .text("Attacking Direction");
+    g.append("svg:defs").append("marker")
+        .attr("id", "triangle")
+        .attr("refX", 6)
+        .attr("refY", 6)
+        .attr("markerWidth", 30)
+        .attr("markerHeight", 30)
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M 0 0 12 6 0 12 3 6")
+        .style("fill", "black");
+    g.append("line")
+        .attr("class", "lines")
+        .attr("id", "direction")
+        .attr("x1", 100)
+        .attr("y1", FIELD_WIDTH + 20)
+        .attr("x2", FIELD_LENGTH-100)
+        .attr("y2", FIELD_WIDTH + 20)
+        .style("stroke", "black")
+        .style("stroke-width", 1)
+        .attr("marker-end","url(#triangle)");
 }
 
 function clearField() {

@@ -16,11 +16,6 @@ $(document).ready(function() {
         readData();
     }
     init();
-    // init(FIELD, teams[1], true); /*average team*/
-    // init(FIELD, teams[13], true); /*good team*/
-    // init(FIELD, teams[9], true); /*bad team*/
-    // init(FIELD, teams[13], false);
-    // setTimeout(function () {drawAssist(teams[13], true);}, 500);
     // cycleTeams(0);
     function cycleTeams(t) {
         if (t < teams.length) {
@@ -30,7 +25,7 @@ $(document).ready(function() {
             setTimeout(function () {cycleTeams(t+1)}, 3000);
         }
     }
-    
+
     function addOptions() {
         var ts = document.getElementById("team-select");
         for (t in teams) {
@@ -39,6 +34,18 @@ $(document).ready(function() {
             option.text = team;
             ts.add(option);
         }
+        var bgs = document.getElementById("bg-select");
+        var txs = document.getElementById("text-select");
+        var colors = ["black", "blue", "gold", "green", "red", "white"];
+        for (c in colors) {
+            var color = colors[c];
+            var option = document.createElement("option");
+            option.text = color;
+            bgs.add(option);
+        }
+        $("#text-select").html($("#bg-select").html());
+        bgs.onchange = function() {d3.select("#head-bg").style("fill", bgs.value).style("stroke", bgs.value)};
+        txs.onchange = function() {d3.select("#head-text").style("fill", txs.value)};
         
         ts.onchange = function() {optionsChanged(ts.value)};
         document.getElementById("created").onchange = function() {optionsChanged(ts.value)};
