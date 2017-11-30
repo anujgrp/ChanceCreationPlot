@@ -1,7 +1,7 @@
 var FIELD_MULT = 2,
     FIELD_WIDTH = 273 * FIELD_MULT,
     FIELD_LENGTH = 421 * FIELD_MULT,
-    MARGIN = {top: 80, left: 105, bottom: 40, right: 100},
+    MARGIN = {top: 80, left: 105, bottom: 40, right: 105},
     FIELD_COLOR = "white",
     LINE_COLOR = "black",
     HEADER_COLOR = "black",
@@ -199,13 +199,19 @@ function drawField() {
     g.append("line")
         .attr("class", "lines")
         .attr("id", "direction")
-        .attr("x1", 100)
+        .attr("x1", FIELD_LENGTH/4)
         .attr("y1", FIELD_WIDTH + 35)
-        .attr("x2", FIELD_LENGTH-100)
+        .attr("x2", FIELD_LENGTH*3/4)
         .attr("y2", FIELD_WIDTH + 35)
         .style("stroke", "black")
         .style("stroke-width", 1)
         .attr("marker-end","url(#triangle)");
+    g.append("image")
+        .attr("x",0)
+        .attr("y",FIELD_WIDTH+1)
+        .attr("width",136)
+        .attr("height",23)
+        .attr("xlink:href", "/img/logo.png");
     
     drawScales();
 }

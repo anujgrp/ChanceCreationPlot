@@ -36,7 +36,7 @@ $(document).ready(function() {
         }
         var bgs = document.getElementById("bg-select");
         var txs = document.getElementById("text-select");
-        var colors = ["black", "blue", "gold", "green", "orange", "red", "white"];
+        var colors = ["black", "blue", "gold", "gray", "green", "orange", "red", "white"];
         for (c in colors) {
             var color = colors[c];
             var option = document.createElement("option");
