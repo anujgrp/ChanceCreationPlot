@@ -19,7 +19,7 @@ This is for a competition hosted by [Chance Analytics](https://chanceanalytics.c
 This viz displays the locations from which teams create and concede chances. Grouping together by assist location shows where the chances are being created.
 - Question 2: Who is your target audience? People working in the player/opposition scouting process at clubs or the average fan?
 
-This would be useful for clubs trying to scout where the opposition likes to attack, and where they are most susceptible to being attacked.
+This would be useful for clubs trying to scout where the opposition likes to attack, and where the opposition is most susceptible to being attacked.
 
 #### Data
 
