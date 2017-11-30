@@ -8,8 +8,9 @@ Data used is from StrataBet and comes from the 2017 Chinese Super League.
 
 ### Examples
 
-![Example](/src/img/example.png)
-Shanghai SIPG
+![Example](/src/img/example-1.png)
+
+![Example](/src/img/example-2.png)
 
 ### Technologies Used
 
@@ -36,6 +37,8 @@ Node
 ## User Guide
 
 ### Choose Team
+
+Select a team from the dropdown
 
 Change header background color
 
