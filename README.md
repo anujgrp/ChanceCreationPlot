@@ -2,7 +2,7 @@
 
 ## Description
 
-Web app used to display where teams create and concede chances from. The plot shows the average Chance Rating of a team binned by location on the field.
+Web app used to display where teams create and concede chances from. The plot shows the average Chance Rating of a team binned by location of the assist on the field.
 
 ### Examples
 
