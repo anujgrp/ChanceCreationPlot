@@ -10,13 +10,20 @@ Web app used to display where teams create and concede chances from. The plot sh
 
 ![Example](/src/img/example-2.png)
 
-### Technologies Used
+#### Competition
 
-HTML/JS, D3.js, jQuery, Express
+This is for a competition hosted by [Chance Analytics](https://chanceanalytics.com/2017/11/14/the-chance-analytics-data-visualization-competition/).
+
+- Question 1: What are you trying to communicate with this viz?
+- Question 2: Who is your target audience? People working in the player/opposition scouting process at clubs or the average fan?
 
 #### Data
 
-This is for a competition hosted by [Chance Analytics](https://chanceanalytics.com/). The data provided is from StrataData and comes from the 2017 Chinese Super League.
+The data provided is from StrataData and comes from the 2017 Chinese Super League.
+
+### Technologies Used
+
+HTML/JS, D3.js, jQuery, Express
 
 ## Install
 
