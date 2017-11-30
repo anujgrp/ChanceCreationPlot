@@ -15,7 +15,9 @@ Web app used to display where teams create and concede chances from. The plot sh
 This is for a competition hosted by [Chance Analytics](https://chanceanalytics.com/2017/11/14/the-chance-analytics-data-visualization-competition/).
 
 - Question 1: What are you trying to communicate with this viz?
+This viz displays the locations from which teams create and concede chances. Grouping together by assist location shows where the chances are being created.
 - Question 2: Who is your target audience? People working in the player/opposition scouting process at clubs or the average fan?
+This would be useful for clubs trying to scout where the opposition likes to attack, and where they are most susceptible to being attacked.
 
 #### Data
 
